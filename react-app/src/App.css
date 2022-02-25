@@ -1,0 +1,43 @@
+.app {
+  text-align: center;
+}
+
+.app-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  min-width: 400px;
+}
+
+.light .app-header {
+  background-color: #fff;
+  color: white;
+}
+
+.light .select {
+  background-color: #fff;
+  color: black;
+}
+
+.light .text {
+  color: black;
+}
+
+.dark .app-header {
+  background-color: #282c34;
+  color: white;
+}
+
+.dark .select {
+  background-color: #4c4c4c;
+  color: #fccb0b;
+}
+
+.dark .text {
+  color: #fccb0b;
+}

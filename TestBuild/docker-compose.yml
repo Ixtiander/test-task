@@ -1,0 +1,33 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:14.2
+    restart: always
+    environment:
+      POSTGRES_USER: testuser
+      POSTGRES_PASSWORD: testpassword
+      POSTGRES_DB: testdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - dbvolume:/var/lib/postgresql/data
+  net-server:
+    image: net-server:latest
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      ConnectionStrings__DefaultConnection: Server=postgres;Port=5432;Database=testdb;User Id=testuser;Password=testpassword;
+    ports:
+      - "8081:80"
+  react-ui:
+    image: react-ui:latest
+    restart: always
+    depends_on:
+      - postgres
+      - net-server
+    ports:
+      - "8080:80"
+volumes:
+  dbvolume:
+    driver: local
